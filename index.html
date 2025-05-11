@@ -1,0 +1,97 @@
+
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <title>Kimberly's Splashschermen (Definitief)</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      font-family: Arial, sans-serif;
+    }
+
+    .slide-container {
+      width: 100vw;
+      height: 100vh;
+      position: relative;
+    }
+
+    .slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+      text-align: center;
+    }
+
+    .slide.active {
+      opacity: 1;
+      z-index: 1;
+    }
+
+    .bg1 { background-color: #f64ca5; }
+    .bg2 { background-color: #f64ca5; }
+    .bg3 { background-color: #fddde6; color: #000; }
+
+    .slide img {
+      max-width: 90%;
+      max-height: 90%;
+      object-fit: contain;
+      display: block;
+    }
+
+    .slide h1 {
+      font-size: 3em;
+      margin-bottom: 0.5em;
+      color: #f50074;
+    }
+
+    .slide p {
+      font-size: 1.5em;
+    }
+  </style>
+</head>
+<body>
+  <div class="slide-container">
+    <div class="slide bg1 active">
+      <img src="kimberly_logo_transparant_wit.png" alt="Kimberly Logo">
+    </div>
+    <div class="slide bg2">
+      <img src="100pics_logo_transparant_wit.png" alt="100 PICS Logo">
+    </div>
+    <div class="slide bg3">
+      <h1>Welkom in het menu!</h1>
+      <p>Hier komt straks jouw spel, categorieën of instellingen.</p>
+    </div>
+  </div>
+  <script>
+    const slides = document.querySelectorAll('.slide');
+    const durations = [2000, 3000]; // laatste blijft staan
+    let currentIndex = 0;
+
+    function showNextSlide() {
+      slides[currentIndex].classList.remove('active');
+      currentIndex++;
+      if (currentIndex < slides.length) {
+        slides[currentIndex].classList.add('active');
+        if (currentIndex < durations.length) {
+          setTimeout(showNextSlide, durations[currentIndex]);
+        }
+      }
+    }
+
+    setTimeout(showNextSlide, durations[0]);
+  </script>
+</body>
+</html>
